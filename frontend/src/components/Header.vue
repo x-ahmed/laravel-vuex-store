@@ -1,5 +1,5 @@
 <template>
- <nav class="navbar navbar-expand-lg navbar-dark bg-dark pt-3">
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark pt-3 mb-2">
   <div class="container">
     <a class="navbar-brand" href="#">Vuex Store</a>
     <button

@@ -1,10 +1,17 @@
 <template>
-<h1>Home Page</h1>
+  <div>
+    <Products />
+  </div>
 </template>
 
 <script>
+import Products from '../components/Products'
+
 export default {
-  name: "Home"
+  name: "Home",
+  components: {
+      Products,
+  }
 }
 </script>
 

@@ -8,7 +8,11 @@
       />
       <div class="card-body">
         <h5 class="card-title">
-          <a href="#">Product title</a>
+          <router-link
+              :to="{name: 'product', params: {id: 21}}"
+          >
+            Product title
+          </router-link>
           <strong class="float-end">$ 35</strong>
         </h5>
         <p class="card-text">

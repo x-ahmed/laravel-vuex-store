@@ -1,25 +1,28 @@
 <template>
   <div class="col-3 mt-3">
-    <div class="card h-100" style="width: 18rem;">
+    <div class="card h-100">
       <img
-          src="https://via.placeholder.com/100"
+          :src="product.image"
           class="card-img-top"
-          alt="..."
+          :alt="product.title"
       />
       <div class="card-body">
         <h5 class="card-title">
           <router-link
-              :to="{name: 'product', params: {id: 21}}"
+              :to="{name: 'product', params: {id: product.id}}"
           >
-            Product title
+            {{ product.title }}
           </router-link>
-          <strong class="float-end">$ 35</strong>
+          <strong class="float-end">$ {{ product.price }}</strong>
         </h5>
         <p class="card-text">
-          Some quick example text to build on the card title and make up the bulk of the card's content.
+          {{product.description}}
         </p>
         <div class="d-grid gap-2">
-          <button class="btn btn-primary" type="button">Add to card</button>
+          <button
+              class="btn btn-primary"
+              type="button"
+          >Add to card</button>
         </div>
       </div>
     </div>
@@ -28,7 +31,8 @@
 
 <script>
 export default {
-  name: "Product"
+  name: "Product",
+  props: ['product'],
 }
 </script>
 

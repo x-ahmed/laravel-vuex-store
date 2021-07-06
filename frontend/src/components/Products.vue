@@ -1,13 +1,10 @@
 <template>
   <div class="row gx-5">
-   <Product />
-   <Product />
-   <Product />
-   <Product />
-   <Product />
-   <Product />
-   <Product />
-   <Product />
+   <Product
+       v-for="product in products"
+       :key="product.id"
+       :product="product"
+   />
   </div>
 </template>
 
@@ -15,7 +12,15 @@
 import Product from "./Product";
 export default {
   name: "Products",
-  components: {Product}
+  computed: {
+    products() {
+      return this.$store.getters.products;
+    }
+  },
+  components: {Product},
+  created() {
+    this.$store.dispatch('getProducts');
+  }
 }
 </script>
 

@@ -22,7 +22,7 @@
           <button
               class="btn btn-primary"
               type="button"
-              @click.stop="addProductToCard(product)"
+              @click.stop="addProductToCard({product,quantity: 1,})"
           >Add to card</button>
         </div>
       </div>
@@ -31,17 +31,12 @@
 </template>
 
 <script>
+import {mapActions} from "vuex";
+
 export default {
   name: "Product",
   props: ['product'],
-  methods: {
-    addProductToCard(product) {
-      this.$store.dispatch('addProductToCard', {
-        product,
-        quantity: 1,
-      })
-    },
-  },
+  methods: mapActions(['addProductToCard']),
 }
 </script>
 

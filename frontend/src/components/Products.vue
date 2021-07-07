@@ -10,16 +10,14 @@
 
 <script>
 import Product from "./Product";
+import {mapActions, mapGetters} from "vuex";
 export default {
   name: "Products",
-  computed: {
-    products() {
-      return this.$store.getters.products;
-    }
-  },
+  computed: mapGetters(['products']),
   components: {Product},
+  methods: mapActions(['getProducts']),
   created() {
-    this.$store.dispatch('getProducts');
+    this.getProducts();
   }
 }
 </script>

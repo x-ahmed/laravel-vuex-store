@@ -55,7 +55,7 @@ export default {
   components: {
     Dropdown,
   },
-  computed: mapGetters(['cartCount']),
+  computed: mapGetters('cartModule', ['cartCount']),
 }
 </script>
 

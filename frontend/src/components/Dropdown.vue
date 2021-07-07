@@ -48,12 +48,12 @@
 import { mapGetters, mapActions } from 'vuex';
 export default {
   name: "Dropdown",
-  computed: mapGetters({
+  computed: mapGetters('cartModule', {
     cart: 'cart',
     cartCount: 'cartCount',
     total: 'totalPrice',
   }),
-  methods: mapActions(['removeFromCart', 'clearCart', 'getCart']),
+  methods: mapActions('cartModule', ['removeFromCart', 'clearCart', 'getCart']),
   mounted() {
     this.getCart();
   }

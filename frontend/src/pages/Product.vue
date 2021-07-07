@@ -53,8 +53,11 @@ export default {
       count: 1,
     }
   },
-  methods: mapActions(['addProductToCard', 'getProduct']),
-  computed: mapGetters(['product']),
+  methods: mapActions({
+    addProductToCard : 'cartModule/addProductToCard',
+    getProduct : 'productModule/getProduct'
+  }),
+  computed: mapGetters('productModule', ['product']),
   mounted() {
     this.getProduct(this.id)
   }

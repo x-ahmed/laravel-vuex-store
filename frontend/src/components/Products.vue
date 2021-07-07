@@ -13,9 +13,9 @@ import Product from "./Product";
 import {mapActions, mapGetters} from "vuex";
 export default {
   name: "Products",
-  computed: mapGetters(['products']),
+  computed: mapGetters('productModule',['products']),
   components: {Product},
-  methods: mapActions(['getProducts']),
+  methods: mapActions('productModule', ['getProducts']),
   created() {
     this.getProducts();
   }

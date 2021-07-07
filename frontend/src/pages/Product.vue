@@ -17,6 +17,7 @@
           type="number"
           class="form-control"
           placeholder="Product's count"
+          v-model.number="count"
           aria-label="Product's count"
           min="1"
           aria-describedby="button-addon2"
@@ -25,6 +26,7 @@
           class="btn btn-outline-primary"
           type="button"
           id="button-addon2"
+          @click.stop="addProductToCard"
       >
         Add to cart
       </button>
@@ -42,6 +44,19 @@ export default {
   props: {
     id: {
       required: true,
+    },
+  },
+  data(){
+    return {
+      count: 1,
+    }
+  },
+  methods: {
+    addProductToCard() {
+      this.$store.dispatch('addProductToCard', {
+        product: this.product,
+        quantity: this.count,
+      })
     },
   },
   computed: {

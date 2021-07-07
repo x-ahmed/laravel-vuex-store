@@ -22,6 +22,7 @@
           <button
               class="btn btn-primary"
               type="button"
+              @click.stop="addProductToCard(product)"
           >Add to card</button>
         </div>
       </div>
@@ -33,6 +34,14 @@
 export default {
   name: "Product",
   props: ['product'],
+  methods: {
+    addProductToCard(product) {
+      this.$store.dispatch('addProductToCard', {
+        product,
+        quantity: 1,
+      })
+    },
+  },
 }
 </script>
 

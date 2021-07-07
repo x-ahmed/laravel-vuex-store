@@ -35,7 +35,7 @@
           >
               Cart
               <span class="position-absolute top-0 start-200 translate-middle badge rounded-pill bg-info">
-                99+
+                {{ cartCount }}
               </span>
           </a>
           <Dropdown />
@@ -54,6 +54,11 @@ export default {
   components: {
     Dropdown,
   },
+  computed: {
+    cartCount() {
+      return this.$store.getters.cart.length
+    }
+  }
 }
 </script>
 

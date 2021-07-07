@@ -45,29 +45,17 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
 export default {
   name: "Dropdown",
-  computed: {
-    cart() {
-      return this.$store.getters.cart
-    },
-    cartCount() {
-      return this.$store.getters.cart.length
-    },
-    total() {
-      return this.$store.getters.totalPrice
-    }
-  },
-  methods: {
-    removeFromCart(product) {
-      this.$store.dispatch('removeFromCart', product)
-    },
-    clearCart() {
-      this.$store.dispatch('clearCart')
-    },
-  },
+  computed: mapGetters({
+    cart: 'cart',
+    cartCount: 'cartCount',
+    total: 'totalPrice',
+  }),
+  methods: mapActions(['removeFromCart', 'clearCart', 'getCart']),
   mounted() {
-    this.$store.dispatch('getCart')
+    this.getCart();
   }
 }
 </script>

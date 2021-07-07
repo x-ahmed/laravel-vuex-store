@@ -1,40 +1,35 @@
-import axios from "axios";
+import ProductApi from "../api/products";
+import CartApi from "../api/carts";
 
-export const getProducts = ({commit}) => {
-    axios.get('http://127.0.0.1:8000/api/products')
-        .then(res => {
-            commit('SET_PRODUCTS', res.data)
-        })
+export const getProducts = async ({commit}) => {
+    const products = await ProductApi.all()
+    commit('SET_PRODUCTS', products)
 }
 
-export const getProduct = ({commit}, id) => {
-    axios.get(`http://127.0.0.1:8000/api/products/${id}`)
-        .then(res => {
-            commit('SET_PRODUCT', res.data)
-        })
+export const getProduct = async ({commit}, id) => {
+    const product = await ProductApi.getProductById(id)
+    commit('SET_PRODUCT', product)
 }
 
-export const addProductToCard = ({commit}, payload) => {
+export const addProductToCard = async ({commit}, payload) => {
     commit('SET_PRODUCT_TO_CART', payload)
-    axios.post('http://127.0.0.1:8000/api/cart', {
+    await CartApi.pushProductToCart({
         product_id: payload.product.id,
         quantity: payload.quantity,
     })
 }
 
-export const getCart = ({commit}) => {
-    axios.get('http://127.0.0.1:8000/api/cart')
-        .then(res => {
-            commit('SET_CART', res.data)
-        })
+export const getCart = async ({commit}) => {
+    const cart = await CartApi.getCart()
+    commit('SET_CART', cart)
 }
 
-export const removeFromCart = ({commit}, product) => {
+export const removeFromCart = async ({commit}, product) => {
     commit('REMOVE_FROM_CART', product)
-    axios.delete(`http://127.0.0.1:8000/api/cart/${product.id}`)
+    await CartApi.removeFromCart(product.id)
 }
 
-export const clearCart = ({commit}) => {
+export const clearCart = async ({commit}) => {
     commit('CLEAR_CART')
-    axios.delete('http://127.0.0.1:8000/api/cart')
+    await CartApi.destroyCart()
 }

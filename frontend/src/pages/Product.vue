@@ -26,7 +26,7 @@
           class="btn btn-outline-primary"
           type="button"
           id="button-addon2"
-          @click.stop="addProductToCard"
+          @click.stop="addProductToCard({product,quantity: count,})"
       >
         Add to cart
       </button>
@@ -39,6 +39,8 @@
 </template>
 
 <script>
+import {mapActions, mapGetters} from "vuex";
+
 export default {
   name: "Product",
   props: {
@@ -51,21 +53,10 @@ export default {
       count: 1,
     }
   },
-  methods: {
-    addProductToCard() {
-      this.$store.dispatch('addProductToCard', {
-        product: this.product,
-        quantity: this.count,
-      })
-    },
-  },
-  computed: {
-    product() {
-      return this.$store.getters.product
-    }
-  },
+  methods: mapActions(['addProductToCard', 'getProduct']),
+  computed: mapGetters(['product']),
   mounted() {
-    this.$store.dispatch('getProduct', this.id)
+    this.getProduct(this.id)
   }
 }
 </script>

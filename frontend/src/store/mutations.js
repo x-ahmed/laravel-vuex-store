@@ -17,3 +17,7 @@ export const SET_PRODUCT_TO_CART = (state, payload) => {
 }
 
 export const SET_CART = (state, cart) => state.cart = cart
+
+export const REMOVE_FROM_CART = (state, product) => state.cart = state.cart.filter(item => item.product.id !== product.id)
+
+export const CLEAR_CART = (state) => state.cart = []

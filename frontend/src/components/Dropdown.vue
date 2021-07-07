@@ -15,7 +15,10 @@
           <div>
             <span class="border-0 badge rounded-pill bg-warning text-black-50">{{ quantity }}</span>
             <span class="border-0 badge rounded-pill bg-success mx-1">$ {{parseInt(product.price)}}</span>
-            <button class="border-0 badge rounded-pill bg-danger">X</button>
+            <button
+                class="border-0 badge rounded-pill bg-danger"
+                @click.stop="removeFromCart(product)"
+            >X</button>
           </div>
         </div>
       </div>
@@ -32,6 +35,7 @@
         <button
             class="btn btn-danger btn-sm"
             type="button"
+            @click.stop="clearCart"
         >
           Clear Cart
         </button>
@@ -53,6 +57,14 @@ export default {
     total() {
       return this.$store.getters.totalPrice
     }
+  },
+  methods: {
+    removeFromCart(product) {
+      this.$store.dispatch('removeFromCart', product)
+    },
+    clearCart() {
+      this.$store.dispatch('clearCart')
+    },
   },
   mounted() {
     this.$store.dispatch('getCart')

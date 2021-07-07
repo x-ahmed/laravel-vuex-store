@@ -48,17 +48,14 @@
 
 <script>
 import Dropdown from './Dropdown'
+import {mapGetters} from "vuex";
 
 export default {
   name: "Header",
   components: {
     Dropdown,
   },
-  computed: {
-    cartCount() {
-      return this.$store.getters.cart.length
-    }
-  }
+  computed: mapGetters(['cartCount']),
 }
 </script>
 
